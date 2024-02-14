@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managed Pages</title>
+</head>
+<body>
+    <h1>Facebook Pages Managed by You</h1>
+
+    {% if pages %}
+        <ul>
+            {% for page in pages %}
+                <li>
+                    <h2>{{ page['name'] }}</h2>
+                    <p>ID: {{ page['id'] }}</p>
+                    <p>Access Token: {{ page['access_token'] }}</p>
+                    <p>Permissions: {{ page['tasks']|join(", ") }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You do not manage any pages</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,39 @@
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT app:app
+
+runtime_config:
+  operating_system: ubuntu22
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 10
+  cool_down_period_sec: 180
+  cpu_utilization:
+   target_utilization: 0.65
+
+skip_files:
+-  ^token_server\.py$
+-  ^cert\.pem$
+-  ^key\.pem$
+-  __pycache__/
+-  .vscode/
+-  venv/
+-  ^.ipynb_checkpoints/
+-  ^chatOpenIA\.py$
+- ^Untitled\.ipynb$
+
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+env_variables:
+  SECRET_KEY: 'xxxxxxxxxxxxxxxxxxxxxxxxxx'
+  FACEBOOK_CLIENT_ID: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  FACEBOOK_CLIENT_SECRET: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  TOKEN_VERIFY: 60d9768904be898291616cae5b4caece
+  PAGE_ACCESS_TOKEN: xxxxxxxxxxxxxxxxxxxxx
+
+readiness_check:
+  app_start_timeout_sec: 1800

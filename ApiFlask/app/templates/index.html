@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="esp">
+<head>
+    <meta charset="UTF-8">
+    <style>    .message {
+        margin: 10px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .user-message {
+        background-color: #0084ff;
+        color: white;
+        text-align: right;
+        margin-left: 20%;
+    }
+
+    .bot-message {
+        background-color: #f0f0f0;
+        margin-right: 20%;
+    }</style>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu chat ha iniciado</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='icon.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+    <body class="bg-light">
+        <div class="container mt-3">
+            <h2 class="text-center mb-3">Este es el Playground de tu negocio {{businessName}}</h2>
+            <form action="" method="POST">
+                <input type="text" id="message" name="message" required>
+                <input class="btn btn-primary mx-3 w-25 h-75" type="submit" value="Enviar">
+            </form>
+            <div class="card overflow-auto mx-3" style="height: 500px; margin: 40px">
+            <ul id="messages"></ul>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+            <script>
+                var socket = io.connect('https://' + document.domain + ':' + location.port);
+                socket.on('connect', function() {
+                    var firsName = "{{ firsName }}";
+                    socket.emit('join', {room: socket.id});
+                    socket.emit('message', {data: 'Me llamo '+ firsName});
+                });
+
+                socket.on('response', function(msg) {
+                    var li = document.createElement("li");
+                    li.classList.add("message", "bot-message");
+                    li.appendChild(document.createTextNode(msg.data));
+                    document.getElementById("messages").appendChild(li);
+                });
+
+                document.querySelector('form').addEventListener('submit', function(e){
+                    e.preventDefault();
+                    var input = document.getElementById('message');
+
+                    // Crear un nuevo li y añadir el mensaje al li
+                    var li = document.createElement("li");
+                    li.classList.add("message", "user-message");
+                    li.appendChild(document.createTextNode(input.value));
+
+                    // Añadir el li a la lista de mensajes
+                     document.getElementById("messages").appendChild(li);
+
+                    socket.emit('message', {data: input.value});
+                    input.value = '';
+                });
+            </script>
+            </div>
+        </div>
+    </body>
+</html>
