@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".businessRegister">
+
+
+    <EditText
+        android:id="@+id/editTextBusinessName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="40dp"
+        android:drawableStart="@drawable/pres"
+        android:drawablePadding="8dp"
+        android:hint="Nombre del negocio"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextBusinessName" />
+
+    <Button
+        android:id="@+id/btnaccept"
+        android:layout_width="155dp"
+        android:layout_height="47dp"
+        android:text="@string/button_accept"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/spinnerOptions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFBBBCBF"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

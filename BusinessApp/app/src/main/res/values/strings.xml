@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">businessBot</string>
+    <string name="title_activity_principal_menu">principalMenu</string>
+    <string name="title_home">Editar</string>
+    <string name="title_dashboard">Ganancias</string>
+    <string name="title_profile">Perfil</string>
+    <string name="button_accept">Aceptar</string>
+    <string name="action_1">Cerrar Sesion</string>
+    <string name="action_2">Cerrar Sesion</string>
+    <string name="supporting_text">Cerrar Sesion</string>
+    <string name="secondary_text">Cerrar Sesion</string>
+    <string name="title">Cerrar Sesion</string>
+    <string name="content_description_media">Cerrar Sesion</string>
+
+
+
+
+    <string-array name="type_options">
+        <item>Servicio</item>
+        <item>Producto</item>
+        <item>Servicios y Productos</item>
+    </string-array>
+</resources>
